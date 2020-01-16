@@ -1,0 +1,13 @@
+
+*.exe
+*.d
+*.o
+*.map
+*.lst
+*.3dsx
+*.cia
+*.elf
+*.smdh
+romfs/gfx/sprites.t3x
+*.bin
+build/sprites.h

@@ -1,0 +1,11 @@
+--atlas -f rgba -z auto
+
+sprites/gameCard.png
+sprites/sdCard.png
+
+sprites/icons/Icon.png
+
+sprites/regions/europe.png
+sprites/regions/japan.png
+sprites/regions/korea.png
+sprites/regions/usa.png
