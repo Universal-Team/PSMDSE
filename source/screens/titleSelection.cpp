@@ -24,11 +24,10 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "core/gameLoader.hpp"
+#include "gameLoader.hpp"
 
-#include "gui/screens/mainMenu.hpp"
-#include "gui/screens/screenCommon.hpp"
-#include "gui/screens/titleSelection.hpp"
+#include "mainMenu.hpp"
+#include "titleSelection.hpp"
 
 extern bool exiting;
 
@@ -57,21 +56,21 @@ void TitleSelection::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 
 void TitleSelection::DrawVersionSelector(void) const
 {
-	Gui::DrawTop();
+	GFX::DrawTop();
 	Gui::DrawStringCentered(0, 2, 0.72f, WHITE, "Select the version of your game.", 400);
-	Gui::sprite(sprites_Icon_idx, 37.5, 80, 1.5, 1.5);
+	GFX::DrawSprite(sprites_Icon_idx, 37.5, 80, 1.5, 1.5);
 
-	Gui::DrawBottom();
+	GFX::DrawBottom();
 	
 	for (int i = 0; i < 2; i++) {
 		Gui::Draw_Rect(versionButtons[i].x, versionButtons[i].y, versionButtons[i].w, versionButtons[i].h, UNSELECTED_COLOR);
 		if (selectedVersion == i) {
-			Gui::drawAnimatedSelector(versionButtons[i].x, versionButtons[i].y, versionButtons[i].w, versionButtons[i].h, .030f, SELECTED_COLOR);
+			Gui::drawAnimatedSelector(versionButtons[i].x, versionButtons[i].y, versionButtons[i].w, versionButtons[i].h, .030f, TRANSPARENT, SELECTED_COLOR);
 		}
 	}
 
-	Gui::sprite(sprites_gameCard_idx, 78, 100);
-	Gui::sprite(sprites_sdCard_idx, 198, 100);
+	GFX::DrawSprite(sprites_gameCard_idx, 78, 100);
+	GFX::DrawSprite(sprites_sdCard_idx, 198, 100);
 
 	Gui::DrawStringCentered(-10-50, 80, 0.6, WHITE, "Gamecard", 80);
 	Gui::DrawStringCentered(110-50, 80, 0.6, WHITE, "Installed", 80);
@@ -104,23 +103,23 @@ void TitleSelection::versionLogic(u32 hDown, u32 hHeld, touchPosition touch) {
 }
 
 void TitleSelection::DrawRegionSelector(void) const {
-	Gui::DrawTop();
+	GFX::DrawTop();
 	Gui::DrawStringCentered(0, 2, 0.72f, WHITE, "Select the region of your game.", 400);
-	Gui::sprite(sprites_Icon_idx, 37.5, 80, 1.5, 1.5);
+	GFX::DrawSprite(sprites_Icon_idx, 37.5, 80, 1.5, 1.5);
 
 	if (selectedVersion == 0) {
-		Gui::sprite(sprites_gameCard_idx, 140, 80, 1.5, 1.5);
+		GFX::DrawSprite(sprites_gameCard_idx, 140, 80, 1.5, 1.5);
 	} else if (selectedVersion == 1) {
-		Gui::sprite(sprites_sdCard_idx, 140, 80, 1.5, 1.5);
+		GFX::DrawSprite(sprites_sdCard_idx, 140, 80, 1.5, 1.5);
 	}
 
 
-	Gui::DrawBottom();
+	GFX::DrawBottom();
 	
 	for (int i = 0; i < 4; i++) {
 		Gui::Draw_Rect(regionButtons[i].x, regionButtons[i].y, regionButtons[i].w, regionButtons[i].h, UNSELECTED_COLOR);
 		if (selectedRegion == i) {
-			Gui::drawAnimatedSelector(regionButtons[i].x, regionButtons[i].y, regionButtons[i].w, regionButtons[i].h, .030f, SELECTED_COLOR);
+			Gui::drawAnimatedSelector(regionButtons[i].x, regionButtons[i].y, regionButtons[i].w, regionButtons[i].h, .030f, TRANSPARENT, SELECTED_COLOR);
 		}
 	}
 
@@ -129,10 +128,10 @@ void TitleSelection::DrawRegionSelector(void) const {
 	Gui::DrawStringCentered(70-30, 95, 0.6, WHITE, "Europe", 50);
 	Gui::DrawStringCentered(150-30, 95, 0.6, WHITE, "Korea", 50);
 
-	Gui::sprite(sprites_japan_idx, 18, 120);
-	Gui::sprite(sprites_usa_idx, 98, 120);
-	Gui::sprite(sprites_europe_idx, 178, 120);
-	Gui::sprite(sprites_korea_idx, 258, 120);
+	GFX::DrawSprite(sprites_japan_idx, 18, 120);
+	GFX::DrawSprite(sprites_usa_idx, 98, 120);
+	GFX::DrawSprite(sprites_europe_idx, 178, 120);
+	GFX::DrawSprite(sprites_korea_idx, 258, 120);
 }
 
 void TitleSelection::regionLogic(u32 hDown, u32 hHeld, touchPosition touch) {

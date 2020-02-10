@@ -24,22 +24,20 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "gui/msg.hpp"
-
-#include "gui/screens/screenCommon.hpp"
+#include "common.hpp"
 
 // Display a Message, which needs to be confirmed with A/B.
 bool Msg::promptMsg2(std::string promptMsg)
 {
 	Gui::clearTextBufs();
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(top, BLACK);
-	C2D_TargetClear(bottom, BLACK);
-	Gui::DrawTop();
+	C2D_TargetClear(Top, BLACK);
+	C2D_TargetClear(Bottom, BLACK);
+	GFX::DrawTop();
 	Gui::Draw_Rect(0, 80, 400, 80, DARKER_COLOR);
 	Gui::DrawStringCentered(0, (240-Gui::GetStringHeight(0.72f, promptMsg))/2, 0.6f, WHITE, promptMsg, 390, 70);
 	Gui::DrawStringCentered(0, 214, 0.72f, WHITE, "Press A to confirm, B to cancel.", 390);
-	Gui::DrawBottom();
+	GFX::DrawBottom();
 	C3D_FrameEnd(0);
 
 	while(1)
@@ -63,12 +61,12 @@ void Msg::DisplayWarnMsg(std::string Text)
 {
 	Gui::clearTextBufs();
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(top, BLACK);
-	C2D_TargetClear(bottom, BLACK);
-	Gui::DrawTop();
+	C2D_TargetClear(Top, BLACK);
+	C2D_TargetClear(Bottom, BLACK);
+	GFX::DrawTop();
 	Gui::Draw_Rect(0, 80, 400, 80, DARKER_COLOR);
 	Gui::DrawStringCentered(0, (240-Gui::GetStringHeight(0.72f, Text))/2, 0.72f, WHITE, Text, 395, 70);
-	Gui::DrawBottom();
+	GFX::DrawBottom();
 	C3D_FrameEnd(0);
 	for (int i = 0; i < 60*2; i++) {
 		gspWaitForVBlank();
@@ -80,12 +78,12 @@ void Msg::DisplayWarnMsg2(std::string Text)
 {
 	Gui::clearTextBufs();
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(top, BLACK);
-	C2D_TargetClear(bottom, BLACK);
-	Gui::DrawTop();
+	C2D_TargetClear(Top, BLACK);
+	C2D_TargetClear(Bottom, BLACK);
+	GFX::DrawTop();
 	Gui::Draw_Rect(0, 80, 400, 80, DARKER_COLOR);
 	Gui::DrawStringCentered(0, (240-Gui::GetStringHeight(0.72f, Text))/2, 0.72f, WHITE, Text, 395, 70);
-	Gui::DrawBottom();
+	GFX::DrawBottom();
 	C3D_FrameEnd(0);
 	for (int i = 0; i < 60*2; i++) {
 		gspWaitForVBlank();
@@ -97,13 +95,13 @@ void Msg::DisplayWaitMsg(std::string waitMsg, ...)
 {
 	Gui::clearTextBufs();
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(top, BLACK);
-	C2D_TargetClear(bottom, BLACK);
-	Gui::DrawTop();
+	C2D_TargetClear(Top, BLACK);
+	C2D_TargetClear(Bottom, BLACK);
+	GFX::DrawTop();
 	Gui::Draw_Rect(0, 80, 400, 80, DARKER_COLOR);
 	Gui::DrawStringCentered(0, (240-Gui::GetStringHeight(0.72f, waitMsg))/2, 0.72f, WHITE, waitMsg, 390, 70);
 	Gui::DrawStringCentered(0, 214, 0.72f, WHITE, "Press A to continue.", 390);
-	Gui::DrawBottom();
+	GFX::DrawBottom();
 	C3D_FrameEnd(0);
 
 	while(1)
@@ -117,12 +115,12 @@ void Msg::DisplayWaitMsg(std::string waitMsg, ...)
 void Msg::HelperBox(std::string Msg) {
 	Gui::clearTextBufs();
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	Gui::ScreenDraw(top);
+	Gui::ScreenDraw(Top);
 	Gui::Draw_Rect(0, 0, 400, 240, DIM);
 	Gui::Draw_Rect(0, 27, 400, 187, DARKER_COLOR); // Outline.
 	Gui::Draw_Rect(2, 29, 396, 183, LIGHT_COLOR); // BG.
 	Gui::DrawString(10, 42, 0.45f, WHITE, Msg, 380);
-	Gui::ScreenDraw(bottom);
+	Gui::ScreenDraw(Bottom);
 	Gui::Draw_Rect(0, 0, 320, 240, DIM);
 	C3D_FrameEnd(0);
 }
@@ -130,12 +128,12 @@ void Msg::HelperBox(std::string Msg) {
 void Msg::DisplayMsg(std::string Message) {
 	Gui::clearTextBufs();
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(top, BLACK);
-	C2D_TargetClear(bottom, BLACK);
-	Gui::DrawTop();
+	C2D_TargetClear(Top, BLACK);
+	C2D_TargetClear(Bottom, BLACK);
+	GFX::DrawTop();
 	Gui::Draw_Rect(0, 80, 400, 80, DARKER_COLOR);
 	Gui::DrawStringCentered(0, (240-Gui::GetStringHeight(0.72f, Message))/2, 0.72f, WHITE, Message, 390, 70);
-	Gui::DrawBottom();
+	GFX::DrawBottom();
 	C3D_FrameEnd(0);
 }
 

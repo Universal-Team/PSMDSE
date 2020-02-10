@@ -24,29 +24,16 @@
 *         reasonable ways as different from the original version.
 */
 
-#ifndef MAINMENU_HPP
-#define MAINMENU_HPP
+#ifndef INIT_HPP
+#define INIT_HPP
 
-#include "common/structs.hpp"
+#include <3ds.h>
 
-#include "gui/screens/screen.hpp"
-
-#include <vector>
-
-class MainMenu : public Screen
-{
-public:
-	void Draw(void) const override;
-	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
-
-private:
-	int Selection = 0;
-
-	std::vector<Structs::ButtonPos> mainButtons = {
-		{90, 40, 140, 35, -1}, // Save Manager.
-		{90, 100, 140, 35, -1}, // Editor.
-		{90, 160, 140, 35, -1}, // Settings?
-	};
-};
+namespace Init {
+	// Init, Mainloop & Exit.
+	Result Initialize();
+	Result MainLoop();
+	Result Exit();
+}
 
 #endif

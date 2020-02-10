@@ -75,9 +75,10 @@ endif
 #---------------------------------------------------------------------------------
 TARGET		:=	PSMDSE
 BUILD		:=	build
-SOURCES		:=	source source/common source/core source/core/management source/core/save source/gui source/gui/screens source/lang
+UNIVCORE	:=	Universal-Core
+SOURCES		:=	$(UNIVCORE) source source/common source/core source/core/management source/core/save source/gui source/screens
 DATA		:=	data
-INCLUDES	:=	include include/common include/core include/core/management include/core/save include/gui include/gui/screens include/lang
+INCLUDES	:=	$(UNIVCORE) include include/common include/core include/core/management include/core/save include/gui include/screens
 GRAPHICS	:=	assets/gfx
 #GFXBUILD	:=	$(BUILD)
 ROMFS		:=	romfs

@@ -24,13 +24,43 @@
 *         reasonable ways as different from the original version.
 */
 
-#ifndef SCREENCOMMON_HPP
-#define SCREENCOMMON_HPP
+#ifndef TITLESELECTION_HPP
+#define TITLESELECTION_HPP
 
-#include "gui/gui.hpp"
-#include "gui/msg.hpp"
+#include "common.hpp"
+#include "gameLoader.hpp"
+#include "structs.hpp"
 
-extern C3D_RenderTarget* top;
-extern C3D_RenderTarget* bottom;
+#include <vector>
+
+class TitleSelection : public Screen
+{
+public:
+	void Draw(void) const override;
+	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
+private:
+	// Screen Modes Draws.
+	void DrawVersionSelector(void) const;
+	void DrawRegionSelector(void) const;
+	// Screen Mode Logics.
+	void versionLogic(u32 hDown, u32 hHeld, touchPosition touch);
+	void regionLogic(u32 hDown, u32 hHeld, touchPosition touch);
+
+	// Selectors.
+	int selectedVersion = 0;
+	int selectedRegion = 0;
+	int selectMode = 1;
+
+	std::vector<Structs::ButtonPos> versionButtons = {		
+		{50, 70, 100, 100}, // Card.
+		{170, 70, 100, 100}, // SD.
+	};
+	std::vector<Structs::ButtonPos> regionButtons = {		
+		{10, 70, 60, 100}, // Japanese.
+		{90, 70, 60, 100}, // USA.
+		{170, 70, 60, 100}, // Europe.
+		{250, 70, 60, 100}, // Korean.
+	};
+};
 
 #endif

@@ -24,24 +24,32 @@
 *         reasonable ways as different from the original version.
 */
 
-#ifndef COLORS_HPP
-#define COLORS_HPP
+#include "mainMenu.hpp"
 
-#include <citro2d.h>
+extern bool touching(touchPosition touch, Structs::ButtonPos button);
 
-// Default colors i guess.
-#define DIM C2D_Color32(0, 0, 0, 190)
-#define WHITE C2D_Color32(255, 255, 255, 255)
-#define BLACK C2D_Color32(0, 0, 0, 255)
+void MainMenu::Draw(void) const
+{
+	GFX::DrawTop();
+	Gui::DrawStringCentered(0, 2, 0.8f, WHITE, "PSMDSE", 400);
 
-// Blue Tones.
-#define DARKER_BLUE					C2D_Color32(0, 0, 205, 255)
-#define LIGHT_BLUE					C2D_Color32(70, 130, 180, 255)
-#define LIGHTER_BLUE				C2D_Color32(70, 130, 155, 255)
-#define SELECTED_BLUE				C2D_Color32(30, 0, 130, 255)
-#define UNSELECTED_BLUE				C2D_Color32(30, 0, 70, 180)
+	GFX::DrawBottom();
 
-extern u32 DARKER_COLOR, LIGHT_COLOR, LIGHTER_COLOR, SELECTED_COLOR, UNSELECTED_COLOR; // C010r Typ3s.
-typedef u32 Color;
+	for (int i = 0; i < 3; i++) {
+		Gui::Draw_Rect(mainButtons[i].x, mainButtons[i].y, mainButtons[i].w, mainButtons[i].h, UNSELECTED_COLOR);
+		if (Selection == i) {
+			Gui::drawAnimatedSelector(mainButtons[i].x, mainButtons[i].y, mainButtons[i].w, mainButtons[i].h, .030f, TRANSPARENT, SELECTED_COLOR);
+		}
+	}
+	Gui::DrawStringCentered(0, (240-Gui::GetStringHeight(0.6f, "Save Manager"))/2-80+17.5, 0.6f, WHITE, "Save Manager", 130, 25);
+	Gui::DrawStringCentered(0, (240-Gui::GetStringHeight(0.6f, "Save Editor"))/2-20+17.5, 0.6f, WHITE, "Save Editor", 130, 25);
+	Gui::DrawStringCentered(0, (240-Gui::GetStringHeight(0.6f, "Settings"))/2+75-17.5, 0.6f, WHITE, "Settings", 130, 25);
+}
 
-#endif
+
+void MainMenu::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
+	if (hDown & KEY_B) {
+		Gui::screenBack();
+		return;
+	}
+}

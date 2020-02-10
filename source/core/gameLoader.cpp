@@ -24,10 +24,8 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "core/gameLoader.hpp"
-
-#include "gui/gui.hpp"
-#include "gui/msg.hpp"
+#include "common.hpp"
+#include "gameLoader.hpp"
 
 #include <algorithm>
 #include <vector>
